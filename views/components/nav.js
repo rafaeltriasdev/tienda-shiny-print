@@ -12,7 +12,7 @@ const createNavHome = () => {
         strokeWidth="1.5" 
         stroke="currentColor" 
         class="transition ease-in-out w-10 h-10 md:hidden cursor-pointer p-2 hover:bg-pink-900
-         rounded-lg">
+        rounded-lg">
 
         <path 
           strokeLinecap="round" 
@@ -23,33 +23,33 @@ const createNavHome = () => {
         <!-- version desktop -->
         <div class="hidden md:flex flex-row gap-1 justify-end ">
         <a href="/" class="transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg justify-start">Home</a>
+        <a href="/tienda" class="transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg">Tienda</a>
+
           <svg xmlns="http://www.w3.org/2000/svg" id="shop-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class=" transition ease-in-out w-10 h-10 cursor-pointer hover:bg-pink-900 rounded-lg">
           <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
           </svg>
 
-          <section class="absolute top-20 r-10 w-100% h-25 bg-slate-300 flex flex-col justify-between">
+          <section  class="cart absolute top-16 right-0 w-auto h-0 bg-slate-300 flex flex-col justify-between overflow-auto shadow-xl rounded-lg">
             <table class="table-fixed text-center border-collapse">
-              <thead>
-                <tr>
+              <thead class="h-2 bottom-1 border-solid">
+                <tr class="border-b-2 indent-4">
                   <th class="table-title">Imagen</th>
                   <th class="table-title">Nombre</th>
                   <th class="table-title">Precio</th>
                   <th class="table-title">Cantidad</th>
+                  <th class="table-title">Eliminar</th>
                 </tr>
               </thead>
               <tbody id="table-body"></tbody>
-                <tr>
-                  <td class="h-25 px-1 py-0 border-b bg-solid">Imagen</td>
-                  <td>Programcion</td>
-                  <td>15$</td>
-                  <td>4</td>
-                </tr>
             </table>
-        <button id="table-remove">Vaciar Carrito</button>
+          <div class="items-center flex flex-col gap-2 p-4">
+            <button class="transition ease-in-out text-white font-bold bg-pink-800 hover:bg-pink-900 py-2 px-4 rounded-lg">Comprar</button>
+            <button class="transition ease-in-out text-white font-bold bg-pink-800 hover:bg-pink-900 py-2 px-4 rounded-lg">Vaciar Carrito</button>
+          </div>
           </section>  
         
 
-        <a href="/login" class="transition ease-in-out text-white font-bold bg-pink-800 hover:bg-pink-900 py-2 px-4 rounded-lg">Login</a>
+          <a href="/login" class="transition ease-in-out text-white font-bold bg-pink-800 hover:bg-pink-900 py-2 px-4 rounded-lg">Login</a>
           <a href="/signup" class="transition ease-in-out text-white font-bold bg-pink-800 hover:bg-pink-900 py-2 px-4 rounded-lg">Sign Up</a>
           
         </div>
@@ -59,6 +59,8 @@ const createNavHome = () => {
           <a href="/login" class="transition ease-in-out text-white font-bold bg-pink-800 hover:bg-pink-900 py-2 px-4 rounded-lg">Login</a>
           <a href="/signup" class="transition ease-in-out text-white font-bold bg-pink-800 hover:bg-pink-900 py-2 px-4 rounded-lg">Sign Up</a>
           <a href="/" class="transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg">Home</a>
+          <a href="/" class="transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg">Tienda</a>
+
 
         </div>
 
@@ -78,7 +80,7 @@ const createNavSignup = () => {
         strokeWidth="1.5" 
         stroke="currentColor" 
         class="transition ease-in-out w-10 h-10 md:hidden cursor-pointer p-2 hover:bg-pink-900
-         rounded-lg">
+        rounded-lg">
 
         <path 
           strokeLinecap="round" 
@@ -116,7 +118,7 @@ const createNavLogin = () => {
         strokeWidth="1.5" 
         stroke="currentColor" 
         class="transition ease-in-out w-10 h-10 md:hidden cursor-pointer p-2 hover:bg-pink-900
-         rounded-lg">
+        rounded-lg">
 
         <path 
           strokeLinecap="round" 
@@ -142,6 +144,74 @@ const createNavLogin = () => {
       `;
 };
 
+const createNavTienda = () => {
+  navbar.innerHTML = `
+    <div class="max-w-full h-16 max-auto flex items-center px-4 justify-between relative">
+        <img src="/img/shiny.png" alt="Logo" class="h-14 rounded-full">
+        
+        <!-- version mobile -->
+        <svg 
+        xmlns="http://www.w3.org/2000/svg" 
+        fill="none" viewBox="0 0 24 24" 
+        strokeWidth="1.5" 
+        stroke="currentColor" 
+        class="transition ease-in-out w-10 h-10 md:hidden cursor-pointer p-2 hover:bg-pink-900
+        rounded-lg">
+
+        <path 
+          strokeLinecap="round" 
+          strokeLinejoin="round" 
+          d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
+
+        <!-- version desktop -->
+        <div class="hidden md:flex flex-row gap-1 justify-end ">
+        <a href="/" class="transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg justify-start">Home</a>
+        <a href="/tienda" class="transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg">Tienda</a>
+
+          <svg xmlns="http://www.w3.org/2000/svg" id="shop-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class=" transition ease-in-out w-10 h-10 cursor-pointer hover:bg-pink-900 rounded-lg">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+          </svg>
+
+          <section  class="cart absolute top-16 right-0 w-auto h-0 bg-slate-300 flex flex-col justify-between overflow-auto shadow-xl rounded-lg">
+            <table class="table-fixed text-center border-collapse">
+              <thead class="h-2 bottom-1 border-solid">
+                <tr class="border-b-2 indent-4">
+                  <th class="table-title">Imagen</th>
+                  <th class="table-title">Nombre</th>
+                  <th class="table-title">Precio</th>
+                  <th class="table-title">Cantidad</th>
+                  <th class="table-title">Eliminar</th>
+                </tr>
+              </thead>
+              <tbody id="table-body"></tbody>
+            </table>
+          <div class="items-center flex flex-col gap-2 p-4">
+            <button class="transition ease-in-out text-white font-bold bg-pink-800 hover:bg-pink-900 py-2 px-4 rounded-lg">Comprar</button>
+            <button class="transition ease-in-out text-white font-bold bg-pink-800 hover:bg-pink-900 py-2 px-4 rounded-lg">Vaciar Carrito</button>
+          </div>
+          </section>  
+        
+
+          <a href="/login" class="transition ease-in-out text-white font-bold bg-pink-800 hover:bg-pink-900 py-2 px-4 rounded-lg">Login</a>
+          <a href="/signup" class="transition ease-in-out text-white font-bold bg-pink-800 hover:bg-pink-900 py-2 px-4 rounded-lg">Sign Up</a>
+          
+        </div>
+        
+        <!-- menu mobile -->
+        <div class="bg-slate-900/30 fixed top-16 right-0 left-0 bottom-0 justify-center items-center flex-col gap-4 hidden">
+          <a href="/login" class="transition ease-in-out text-white font-bold bg-pink-800 hover:bg-pink-900 py-2 px-4 rounded-lg">Login</a>
+          <a href="/signup" class="transition ease-in-out text-white font-bold bg-pink-800 hover:bg-pink-900 py-2 px-4 rounded-lg">Sign Up</a>
+          <a href="/" class="transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg">Home</a>
+          <a href="/" class="transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg">Tienda</a>
+
+
+        </div>
+
+    </div>
+      `;
+}
+
 // verificar en que pagina estoy y crear el navbar correspondiente
 if(window.location.pathname === '/') {
     createNavHome();
@@ -149,8 +219,9 @@ if(window.location.pathname === '/') {
     createNavSignup()
 } else if (window.location.pathname === '/login/') {
     createNavLogin();
-} 
-
+} else if (window.location.pathname === '/tienda/') {
+    createNavTienda();
+}
 
 const navBtn = navbar.children[0].children[1];
 

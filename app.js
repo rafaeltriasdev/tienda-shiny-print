@@ -8,7 +8,6 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 const usersRouter = require('./controllers/users');
 const loginRouter = require('./controllers/login');
-// const todosRouter = require('./controllers/todos'); // Controlador para manejar las tareas
 const logoutRouter = require('./controllers/logout'); // Controlador para manejar el cierre de sesión
 const { userExtractor } = require('./middleware/auth'); // Middleware para extraer el usuario autenticado
 const { MONGO_URI } = require('./config'); // Importar la URI de conexión a MongoDB desde el archivo de configuración
@@ -32,7 +31,7 @@ app.use('/', express.static(path.resolve('views', 'home')));
 app.use('/styles', express.static(path.resolve('views', 'styles')));
 app.use('/signup', express.static(path.resolve('views', 'signup')));
 app.use('/login', express.static(path.resolve('views', 'login')));
-// app.use('/todos', express.static(path.resolve('views', 'todos')));
+app.use('/tienda', express.static(path.resolve('views', 'tienda')));
 app.use('/components', express.static(path.resolve('views', 'components')));
 app.use('/img', express.static(path.resolve('img')));
 app.use('/verify/:id/:token', express.static(path.resolve('views', 'verify')));
