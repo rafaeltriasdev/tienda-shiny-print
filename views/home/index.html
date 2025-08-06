@@ -5,46 +5,85 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=, initial-scale=1.0" />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="../styles/output.css">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Shiny Print VE</title>
   </head>
 <body class="font-sans text-gray-800">
 
+<!-- Navbar -->
 <nav id="navbar" class="fixed top-0 left-0 right-0 bg-pink-950 h-16 z-20" >
-
 </nav>
 
-  <!-- 🌄 Banner con título -->
-  <div class="flex text-center top-16 text-black justify-center mt-16">
-    <img src="/img/bannerShiny.jpg" alt="Banner principal" class="w-full object-cover">
-    <h1 class="absolute self-center text-center justify-center text-4xl md:text-6xl font-bold px-4 py-2 z-10">
-      Shiny Print Ve
-    </h1>
-  </div>
+<!-- 🌄 Banner con título -->
 
-  <!-- 🛍 Productos destacados -->
-  <section class="py-10 bg-gray-100">
-    <h2 class="text-3xl text-center font-semibold mb-6">Productos Destacados</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 px-2 md:px-20">
-      <div class="bg-pink-100 shadow-md rounded-lg p-4 flex flex-col items-center">
-        <img src="/img/T-Shirt1.png" alt="Producto 1" class="w-40 h-40 object-contain rounded mx-auto mb-2 md:w-full md:h-48"> 
-        <h3 class="mt-2 text-lg md:text-xl font-bold text-center">Producto 1</h3>
-        <p class="text-gray-600 text-center text-sm md:text-base">Descripción breve del producto.</p>
-      </div>
-      <div class="bg-pink-100 shadow-md rounded-lg p-4 flex flex-col items-center">
-        <img src="/img/taza1.png" alt="Producto 2" class="w-40 h-40 object-contain rounded mx-auto mb-2 md:w-full md:h-48">
-        <h3 class="mt-2 text-lg md:text-xl font-bold text-center">Producto 2</h3>
-        <p class="text-gray-600 text-center text-sm md:text-base">Descripción breve del producto.</p>
-      </div>
-      <div class="bg-pink-100 shadow-md rounded-lg p-4 flex flex-col items-center">
-        <img src="/img/cooler1.png" alt="Producto 3" class="w-40 h-40 object-contain rounded mx-auto mb-2 md:w-full md:h-48">
-        <h3 class="mt-2 text-lg md:text-xl font-bold text-center">Producto 3</h3>
-        <p class="text-gray-600 text-center text-sm md:text-base">Descripción breve del producto.</p>
+<div class="relative flex text-center top-16 text-black justify-center">
+  <img src="/img/bannerShiny.jpg" alt="Banner principal" class="opacity-90 w-full object-cover">
+
+  <section class="absolute inset-0 flex flex-col items-center justify-center bg-opacity text-xl z-10">
+    <div class="container mx-auto px-4">
+        <h1 class="text-3xl text-center text-black rounded-lg font-bold mb-6">Bienvenido a Shiny Print Ve</h1>
+        <p class="text-center text-black-700 mb-6">Tu tienda de confianza para productos personalizados de alta calidad.</>
+      <div class="flex justify-center">
+        <a href="/tienda" class="bg-pink-800 hover:bg-pink-900 text-white py-2 px-4 rounded transition duration-300">Explorar Productos</a>
       </div>
     </div>
   </section>
+</div>
 
-  <!-- ✅ Beneficios de la tienda -->
+<!-- Sección de Productos Destacados -->
+<section id="products" class="py-10 bg-gray-100">
+  
+  <div id="products-container" class="">
+      
+<!-- Lista de productos -->
+  <h3 id="product-title" class="text-3xl text-center font-semibold mt-20 mb-6">Productos Destacados</h3>
+    <p class="text-center text-gray-700 mb-6">Descubre nuestros productos más populares y exclusivos.</p>
+
+      <ul id="products-list" class="grid grid-cols-1 md:grid-cols-3 gap-8 px-2 md:px-20">
+        <li class="product-item bg-pink-100 shadow-md rounded-lg p-4 flex flex-col items-center hover:scale-105 hover:shadow-lg transition duration-300" >
+          <div class="product-img">
+            <img src="/img/T-Shirt1.png" alt="Producto 1" class="w-40 h-40 object-contain rounded mx-auto mb-2 md:w-full md:h-48"> 
+          </div>
+          <div class="product-info mt-2 text-lg md:text-xl font-bold text-center">
+            <p class="mt-2 text-lg md:text-xl font-bold text-center">Franela Oversize</p>
+            <p class="text-gray-600 text-center text-sm md:text-base">Fabricada en tela jersey de la mejor calidad importada. <br> Diseño completamente personalizado.</p>
+            <p class="product-price">Precio: $20</p>
+            <br>
+            <a href="/tienda" class="mt-2 bg-pink-800 hover:bg-pink-900 text-white py-2 px-4 rounded">Más Información</a>
+          </div>
+        </li>
+        <li class="product-item bg-pink-100 shadow-md rounded-lg p-4 flex flex-col items-center hover:scale-105 hover:shadow-lg transition duration-300" >
+          <div class="product-img">
+            <img src="/img/taza1.png" alt="Producto 1" class="w-40 h-40 object-contain rounded mx-auto mb-2 md:w-full md:h-48"> 
+          </div>
+          <div class="product-info mt-2 text-lg md:text-xl font-bold text-center">
+            <p class="mt-2 text-lg md:text-xl font-bold text-center">Taza de One Piece</p>
+            <p class="text-gray-600 text-center text-sm md:text-base">Fabricada en cerámica y sublimada.</p>
+            <p class="product-price">Precio: $5</p>
+            <br>
+            <a href="/tienda" class="mt-2 bg-pink-800 hover:bg-pink-900 text-white py-2 px-4 rounded">Más Información</a>
+          </div>
+        </li>
+        <li class="product-item bg-pink-100 shadow-md rounded-lg p-4 flex flex-col items-center hover:scale-105 hover:shadow-lg transition duration-300" >
+          <div class="product-img">
+            <img src="/img/cooler1.png" alt="Producto 1" class="w-40 h-40 object-contain rounded mx-auto mb-2 md:w-full md:h-48"> 
+          </div>
+          <div class="product-info mt-2 text-lg md:text-xl font-bold text-center">
+            <p class="mt-2 text-lg md:text-xl font-bold text-center">Cooler de Snoopy</p>
+            <p class="text-gray-600 text-center text-sm md:text-base">Material completamente de aluminio con tapa de plástico. <br> Mantiene el frío y/o calor.</p>
+            <p class="product-price">Precio: $15</p>
+            <br>
+            <a href="/tienda" class="mt-2 bg-pink-800 hover:bg-pink-900 text-white py-2 px-4 rounded">Más Información</a>
+          </div>
+        </li>
+      </ul>
+  </div>
+
+</section>
+
+<!-- ✅ Beneficios de la tienda -->
   <section class="py-10">
     <h2 class="text-3xl text-center font-semibold mb-6">¿Por qué comprar con nosotros?</h2>
     <div class="flex flex-wrap justify-center gap-6 px-4 md:px-20">
@@ -63,7 +102,7 @@
     </div>
   </section>
 
-  <!-- 💬 Comentarios -->
+<!-- 💬 Comentarios -->
   <section class="py-10 bg-gray-100">
     <h2 class="text-3xl text-center font-semibold mb-6">Opiniones de nuestros clientes</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 px-4 md:px-20">
@@ -78,7 +117,7 @@
     </div>
   </section>
 
-  <!-- 📞 Contacto -->
+<!-- 📞 Contacto -->
   <footer class="bg-pink-950 text-white py-6 mt-10">
     <div class="flex justify-center gap-4 p-3">
       <a href="https://api.whatsapp.com/send?phone=584123799346" target="_blank">
