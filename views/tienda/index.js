@@ -16,3 +16,17 @@ shopIcon.addEventListener('click', () => {
     cart.classList.toggle('ease-in-out');
     cart.classList.toggle('duration-300');
 });
+
+// Mostrar/ocultar el botón según el scroll
+const scrollTopBtn = document.getElementById('scrollTopBtn');
+window.addEventListener('scroll', () => {
+if (window.scrollY > 200) {
+    scrollTopBtn.classList.remove('hidden');
+} else {
+    scrollTopBtn.classList.add('hidden');
+}
+});
+// Scroll suave al inicio
+scrollTopBtn.addEventListener('click', () => {
+window.scrollTo({ top: 0, behavior: 'smooth' });
+});
