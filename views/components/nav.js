@@ -176,7 +176,7 @@ const createNavTienda = () => {
             </table>
           <div class="items-center flex flex-col gap-2 p-4">
             <button class="transition ease-in-out text-white font-bold bg-pink-800 hover:bg-pink-900 py-2 px-4 rounded-lg">Comprar</button>
-            <button class="transition ease-in-out text-white font-bold bg-pink-800 hover:bg-pink-900 py-2 px-4 rounded-lg">Vaciar Carrito</button>
+            <button id="table-clear" class="transition ease-in-out text-white font-bold bg-pink-800 hover:bg-pink-900 py-2 px-4 rounded-lg">Vaciar Carrito</button>
           </div>
           </section>  
           <a href="/login" class="transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg">Login</a>
