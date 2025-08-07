@@ -8,13 +8,18 @@ const userSchema = new mongoose.Schema({
     verified: { // Indica si el usuario ha verificado su cuenta
     type: Boolean,
     default: false
-     }, 
+    }, 
     
+
     todos: [{
         type: mongoose.Schema.Types.ObjectId, // Almacena el ID del usuario que creó el todo
         ref: 'Todo' // Referencia al modelo Todo
-        }]
-    });
+    }],
+    isAdmin: {
+        type: Boolean,
+        default: false
+    }
+});
 
 // Configura cómo se transforman los documentos al convertirlos a JSON
 userSchema.set('toJSON', {

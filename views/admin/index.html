@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="/styles/output.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Panel de Administración | Shiny Print VE</title>
+  </head>
+<body class="font-sans text-gray-800">
+
+  <nav id="navbar" class="fixed top-0 left-0 right-0 bg-pink-950 h-16 z-20"></nav>
+
+  <main class="pt-20 px-2 md:px-10 max-w-7xl mx-auto">
+    <h1 class="text-3xl md:text-5xl font-bold text-center mb-8">Panel de Administración</h1>
+    <section class="bg-white rounded-lg shadow-lg p-6 mb-10">
+      <h2 class="text-2xl font-semibold mb-4">Gestión de Productos</h2>
+      <form id="product-form" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <input type="text" id="name" placeholder="Nombre del producto" class="border rounded p-2" required>
+        <input type="text" id="description" placeholder="Descripción" class="border rounded p-2" required>
+        <input type="number" id="price" placeholder="Precio" class="border rounded p-2" required>
+        <input type="text" id="image" placeholder="URL de la imagen" class="border rounded p-2" required>
+        <button type="submit" class="col-span-1 md:col-span-2 bg-pink-800 hover:bg-pink-900 text-white py-2 px-4 rounded transition duration-300">Guardar Producto</button>
+      </form>
+      <div class="overflow-x-auto">
+        <table class="min-w-full bg-pink-50 rounded-lg">
+          <thead>
+            <tr>
+              <th class="py-2 px-4">Nombre</th>
+              <th class="py-2 px-4">Descripción</th>
+              <th class="py-2 px-4">Precio</th>
+              <th class="py-2 px-4">Imagen</th>
+              <th class="py-2 px-4">Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="products-table">
+            <!-- Productos renderizados aquí -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+  <footer class="bg-pink-950 text-white py-6 mt-10">
+    <div class="flex justify-center gap-4 p-3">
+      <a href="https://api.whatsapp.com/send?phone=584123799346" target="_blank">
+        <img src="/img/whatsapp.ico" alt="WhatsApp" class="w-10 h-10">
+      </a>
+      <a href="mailto:shinyamulet14@gmail.com" target="_blank">
+        <img src="/img/email.ico" alt="Email" class="w-10 h-10">
+      </a>
+      <a href="https://www.facebook.com/shinyprint.ve" target="_blank">
+        <img src="/img/facebook.ico" alt="Facebook" class="w-10 h-10">
+      </a>
+      <a href="https://www.instagram.com/shinyprint.ve/?__pwa=1" target="_blank">
+        <img src="/img/instagram.ico" alt="Instagram" class="w-10 h-10">
+      </a>
+    </div>
+    <div class="mt-5 flex justify-center gap-4 p-3">
+      <a href="https://github.com/rafaeltriasdev" target="_blank">
+        <p>Desarrollado por Rafael Trias Dev</p>
+      </a>
+    </div>
+    <div class="text-center">
+        <p>&copy; 2025 ShinyPrintVe.com | Todos los derechos reservados</p>
+        <p class="mt-2">Contacto: shinyprintve@gmail.com</p>
+    </div>
+  </footer>
+  <script src="/components/nav.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>

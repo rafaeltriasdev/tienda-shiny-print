@@ -161,6 +161,7 @@ const createNavTienda = () => {
 
         <div class="hidden md:flex flex-row gap-1 justify-end ">
         <a href="/" class="transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg">Home</a>
+        <a href="/admin" class="transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg">Admin</a>
           <section  class="cart absolute top-16 right-0 w-auto h-0 bg-slate-300 flex flex-col justify-between overflow-auto shadow-xl rounded-lg">
             <table class="table-fixed text-center border-collapse">
               <thead class="h-2 bottom-1 border-solid">
