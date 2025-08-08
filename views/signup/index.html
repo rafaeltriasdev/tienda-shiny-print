@@ -17,12 +17,16 @@
     
   </div>
 
-  <div class="flex-col pt-16 h-screen flex max-w-7xl mx-auto justify-center items-center px-4">
-    <div class="hidden lg:flex w-2/4 justify-center items-center">
+  <div class="flex flex-col pt-20 min-h-screen items-center justify-center px-4">
+    <div class="flex flex-col items-center mb-6">
+      <img src="/img/shiny.png" alt="Shiny Print Logo" class="h-20 w-20 rounded-full shadow-lg border-4 border-pink-300 bg-white/80">
+      <h1 class="mt-4 text-3xl font-extrabold text-pink-900 drop-shadow-lg tracking-tight ">Crea tu cuenta en Shiny Print</h1>
+      <p class="text-zinc-800 text-lg mt-2 font-medium text-center">¡Únete y personaliza tu mundo con estilo!</p>
     </div>
-    <form id="form" class="flex flex-col tex gap-4 bg-zinc-200/50 p-4 rounded-lg text-md shadow-md lg:w-2/4">
+    <form id="form" class="backdrop-blur-md bg-white/60 border border-pink-200 shadow-2xl rounded-2xl p-8 flex flex-col gap-6 w-full max-w-md">
       <div class="flex flex-col gap-2">
-        <label for="name-input" class="font-bold text-zinc-900">
+        <label for="name-input" class="font-bold text-pink-900 flex items-center gap-2">
+          <svg class="w-5 h-5 text-pink-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5.121 17.804A13.937 13.937 0 0112 15c2.5 0 4.847.655 6.879 1.804M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
           Nombre y Apellido <span class="text-red-500">*</span>
         </label>
         <input
@@ -31,13 +35,13 @@
           name="name-input"
           autocomplete="off"
           placeholder="Introduce tu nombre y apellido"
-          class="rounded-lg p-2 bg-zinc-100 focus:outline-indigo-700"
+          class="rounded-lg p-3 bg-zinc-100 focus:outline-none focus:ring-2 focus:ring-pink-400 transition"
         >
-        <p class="text-xs text-zinc-800">Tanto el nombre como el apellido deben comenzar con mayusculas.</p>
+        <p class="text-xs text-zinc-800">Tanto el nombre como el apellido deben comenzar con mayúsculas.</p>
       </div>
-
       <div class="flex flex-col gap-2">
-        <label for="name-input" class="font-bold text-zinc-900">
+        <label for="email-input" class="font-bold text-pink-900 flex items-center gap-2">
+          <svg class="w-5 h-5 text-pink-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 12a4 4 0 01-8 0m8 0V8a4 4 0 10-8 0v4m8 0a4 4 0 01-8 0m8 0v4a4 4 0 01-8 0v-4"/></svg>
           Correo <span class="text-red-500">*</span>
         </label>
         <input
@@ -46,13 +50,13 @@
           name="email-input"
           autocomplete="off"
           placeholder="ejemplo@correo.com"
-          class="rounded-lg p-2 bg-zinc-100 focus:outline-indigo-700"
+          class="rounded-lg p-3 bg-zinc-100 focus:outline-none focus:ring-2 focus:ring-pink-400 transition"
         >
         <p class="text-xs text-zinc-800">El correo es requerido.</p>
       </div>
-
       <div class="flex flex-col gap-2">
-        <label for="name-input" class="font-bold text-zinc-900">
+        <label for="password-input" class="font-bold text-pink-900 flex items-center gap-2">
+          <svg class="w-5 h-5 text-pink-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 11c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm0 0v2m0 4h.01"/></svg>
           Contraseña <span class="text-red-500">*</span>
         </label>
         <input
@@ -60,17 +64,18 @@
           id="password-input"
           name="password-input"
           autocomplete="off"
-          class="rounded-lg p-2 bg-zinc-100 focus:outline-indigo-700"
+          placeholder="Tu contraseña"
+          class="rounded-lg p-3 bg-zinc-100 focus:outline-none focus:ring-2 focus:ring-pink-400 transition"
         >
         <p class="text-xs text-zinc-800">
-          Debe tener al menos una letra. <br>
-          Debe tener al menos un número. <br>
-          Debe tener al menos 8 characteres.
+          Debe tener al menos una letra.<br>
+          Debe tener al menos un número.<br>
+          Debe tener al menos 8 caracteres.
         </p>
       </div>
-
       <div class="flex flex-col gap-2">
-        <label for="name-input" class="font-bold text-zinc-900">
+        <label for="match-input" class="font-bold text-pink-900 flex items-center gap-2">
+          <svg class="w-5 h-5 text-pink-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
           Confirmar contraseña <span class="text-red-500">*</span>
         </label>
         <input
@@ -78,20 +83,22 @@
           id="match-input"
           name="match-input"
           autocomplete="off"
-          class="rounded-lg p-2 bg-zinc-100 focus:outline-indigo-700"
+          placeholder="Repite tu contraseña"
+          class="rounded-lg p-3 bg-zinc-100 focus:outline-none focus:ring-2 focus:ring-pink-400 transition"
         >
-        <p class="text-xs text-zinc-800">
-          Debe coincidir con la contraseña.
-        </p>
+        <p class="text-xs text-zinc-800">Debe coincidir con la contraseña.</p>
       </div>
-
       <button
         id="form-btn"
-        class="bg-pink-900 py-2 px-4 rounded-lg font-bold text-white hover:bg-pink-800 text-center transition ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
+        class="bg-gradient-to-r from-pink-700 to-pink-500 py-3 px-4 rounded-xl font-bold text-white text-lg shadow-md hover:scale-105 hover:from-pink-800 hover:to-pink-600 transition-all duration-200 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
         disabled
       >
         Registrar
       </button>
+      <div class="text-center mt-2">
+        <span class="text-zinc-700">¿Ya tienes cuenta?</span>
+        <a href="/login" class="text-pink-700 font-bold hover:underline ml-1">Inicia sesión aquí</a>
+      </div>
     </form>
   </div>
 
