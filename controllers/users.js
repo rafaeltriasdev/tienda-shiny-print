@@ -1,9 +1,65 @@
-const usersRouter= require('express').Router(); // Importa el enrutador de Express
 const User = require('../models/user');
+const usersRouter= require('express').Router(); // Importa el enrutador de Express
 const bcrypt = require('bcrypt'); // Importa bcrypt para el hash de contraseñas
 const jwt = require('jsonwebtoken'); // Importa jsonwebtoken para manejar tokens JWT
 const nodemailer = require('nodemailer'); // Importa nodemailer para enviar correos electrónicos
 const {PAGE_URL} = require('../config'); // Importa la URL de la página desde la configuración
+
+// Obtener un usuario por id
+usersRouter.get('/:id', async (req, res) => {
+  const { id } = req.params;
+  const user = await User.findById(id);
+  if (!user) return res.status(404).json({ error: 'Usuario no encontrado' });
+  res.json(user);
+});
+
+// Editar usuario por id
+usersRouter.put('/:id', async (req, res) => {
+  const { id } = req.params;
+  const { name, email, password } = req.body;
+  const updateData = { name, email };
+  if (password) {
+    const saltRounds = 10;
+    updateData.passwordHash = await bcrypt.hash(password, saltRounds);
+  }
+  const user = await User.findByIdAndUpdate(id, updateData, { new: true });
+  if (!user) return res.status(404).json({ error: 'Usuario no encontrado' });
+  res.json(user);
+});
+
+// Eliminar usuario por id
+usersRouter.delete('/:id', async (req, res) => {
+  const { id } = req.params;
+  if (!id || id.length !== 24) {
+    return res.status(400).json({ error: 'ID inválido' });
+  }
+  const user = await User.findByIdAndDelete(id);
+  if (!user) return res.status(404).json({ error: 'Usuario no encontrado' });
+  res.json({ message: 'Usuario eliminado correctamente' });
+});
+
+// Obtener todos los usuarios
+usersRouter.get('/', async (req, res) => {
+  const users = await User.find({});
+  res.json(users);
+});
+
+// Cambiar el rol de un usuario (admin/usuario)
+usersRouter.patch('/:id/role', async (req, res) => {
+  const { isAdmin } = req.body;
+  const user = await User.findByIdAndUpdate(req.params.id, { isAdmin }, { new: true });
+  if (!user) return res.status(404).json({ error: 'Usuario no encontrado' });
+  res.json(user);
+});
+
+// Verificar usuario manualmente
+usersRouter.patch('/:id/verify', async (req, res) => {
+  const { verified } = req.body;
+  const user = await User.findByIdAndUpdate(req.params.id, { verified }, { new: true });
+  if (!user) return res.status(404).json({ error: 'Usuario no encontrado' });
+  res.json(user);
+});
+
 
 // Ruta para registrar un nuevo usuario
 // Esta ruta recibe los datos del usuario (nombre, email y contraseña) y crea un nuevo usuario en la base de datos

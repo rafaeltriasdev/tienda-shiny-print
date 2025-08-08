@@ -9,12 +9,16 @@ const mongoose = require('mongoose');
 const usersRouter = require('./controllers/users');
 const loginRouter = require('./controllers/login');
 const logoutRouter = require('./controllers/logout'); // Controlador para manejar el cierre de sesión
+const adminRouter = require('./controllers/admin');
 const productsRouter = require('./controllers/products');
+const ordersRouter = require('./controllers/orders');
 const { userExtractor } = require('./middleware/auth'); // Middleware para extraer el usuario autenticado
-const meRouter = require('./controllers/me');
 const { MONGO_URI } = require('./config'); // Importar la URI de conexión a MongoDB desde el archivo de configuración
 
 (async() =>{
+
+// Servir archivos estáticos de la carpeta uploads
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
     try {
         await mongoose.connect(MONGO_URI);
         console.log('Conecto a Mongo DB');
@@ -22,13 +26,14 @@ const { MONGO_URI } = require('./config'); // Importar la URI de conexión a Mon
         console.log(error);
     }
 })();
-
 //Middlewares que se ejecutan antes de las rutas
 app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 
 //Rutas Frontend
+app.use(express.static(path.resolve('views'))); // Rutas para archivos estáticos
+app.use('/js', express.static(path.resolve('views', 'js')));// Rutas para archivos JavaScript
 app.use('/', express.static(path.resolve('views', 'home')));
 app.use('/styles', express.static(path.resolve('views', 'styles')));
 app.use('/signup', express.static(path.resolve('views', 'signup')));
@@ -52,6 +57,10 @@ app.use('/api/users', usersRouter);
 app.use('/api/login', loginRouter);
 app.use('/api/logout', logoutRouter);
 app.use('/api/products', productsRouter);
+app.use('/api/orders', ordersRouter);
+app.use('/api/admin', userExtractor, adminRouter);// Rutas protegidas por el middleware userExtractor
+
+
 
 
 module.exports = app;

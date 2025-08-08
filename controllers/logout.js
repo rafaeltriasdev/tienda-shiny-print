@@ -1,17 +1,20 @@
 const logoutRouter = require('express').Router();
-const User = require('../models/user');
 
+// Ruta para manejar el cierre de sesión
+// Esta ruta elimina la cookie de acceso del usuario, lo que efectivamente cierra la sesión
+// Si el usuario no está autenticado (no tiene una cookie de acceso), se devuelve un error 401 Unauthorized
 logoutRouter.get('/', async (request, response) => {
     const cookies = request.cookies;
 // verificar si el usuario esta autenticado
     if (!cookies?.accessToken) {
-        return response.sendStatus(401).json({ error: 'No estás autenticado' });
+        return response.sendStatus(401);
     }
 
-    // Clear the accessToken cookie
+    // Elimina la cookie de acceso del usuario
+    // Esto asegura que el usuario no pueda realizar acciones protegidas sin autenticación
     response.clearCookie('accessToken', {
-    secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
-    httpOnly: true // Prevents client-side JavaScript from accessing the cookie 
+    secure: process.env.NODE_ENV === 'production', // Asegura que la cookie solo se envíe a través de HTTPS en producción
+    httpOnly: true // Hace que la cookie no sea accesible desde JavaScript del lado del cliente
     });
 
     return response.sendStatus(204); // No Content
