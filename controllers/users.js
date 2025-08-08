@@ -6,6 +6,10 @@ const nodemailer = require('nodemailer'); // Importa nodemailer para enviar corr
 const {PAGE_URL} = require('../config'); // Importa la URL de la página desde la configuración
 
 // Ruta para registrar un nuevo usuario
+// Esta ruta recibe los datos del usuario (nombre, email y contraseña) y crea un nuevo usuario en la base de datos
+// Si el usuario ya existe, devuelve un error
+// Si el registro es exitoso, envía un correo electrónico de verificación al usuario
+// También genera un token de acceso que se puede usar para verificar el usuario más tarde
 usersRouter.post('/', async (request, response) => {
     const { name, email, password } = request.body;
 
@@ -13,10 +17,12 @@ usersRouter.post('/', async (request, response) => {
         return response.status(400).json({error: 'Todos los campos son obligatorios' });
     }
 
+
     // Validación de email
-    const userExists = await User.findOne({ email }); // Busca si el usuario ya existe en la base de datos
-    
-    if (userExists) {
+    const userExist = await User.findOne({ email }); // Busca si el usuario ya existe en la base de datos
+    //find one es un metodo para buscar en la base de datos.
+
+    if (userExist) {
         return response.status(400).json({error: 'El email ya está en uso' });
 
     }
@@ -28,21 +34,21 @@ usersRouter.post('/', async (request, response) => {
         name,
         email,
         passwordHash,
-    });
+    })
 
     const savedUser = await newUser.save(); // Guarda el nuevo usuario en la base de datos
-    const token = jwt.sign({ id: savedUser.id }, process.env.ACCESS_TOKEN_SECRET, { 
+    const token = jwt.sign({ id: savedUser.id }, process.env.ACCESS_TOKEN_SECRET, { // Firmar el token con el ID del usuario
         expiresIn: '1d' // Expira en 1 día
     });
 
-// Create a test account or replace with real credentials.
+// Configuración del transportador de nodemailer para enviar correos electrónicos
     const transporter = nodemailer.createTransport({
         host: 'smtp.gmail.com', // Cambia el host si es necesario 
         port: 465, // Cambia el puerto si es necesario
         secure: true, // true for 465, false for other ports
         auth: {
-            user: process.env.EMAIL_USER, // Reemplaza con tu usuario de email
-            pass: process.env.EMAIL_PASS, // Reemplaza con tu contraseña de email
+        user: process.env.EMAIL_USER, // Reemplaza con tu usuario de email
+        pass: process.env.EMAIL_PASS, // Reemplaza con tu contraseña de email
     },
     });
 
@@ -55,17 +61,23 @@ usersRouter.post('/', async (request, response) => {
     });
     
     return response.status(201).json('Usuario creado. Por favor verifica tu correo');
+ 
+
+    console.error('Error al registrar el usuario', error)
+
+     return res.status(500).json({ message: 'Error interno del servidor al crear el usuario.', error: error.message });
 
 });
 
 // Ruta para verificar el usuario mediante un token
 usersRouter.patch('/:id/:token', async (request, response) => {
     try {
-    const token = request.params.token; // Obtiene el token de la URL
-    const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET); // Verifica el token
-    const id = decodedToken.id; // Obtiene el ID del usuario desde el token;
-    await User.findByIdAndUpdate(id, { verified: true });
-    return response.sendStatus(200);
+        const token = request.params.token; // Obtiene el token de la URL
+        const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET); // Verifica el token
+        const id = decodedToken.id; // Obtiene el ID del usuario desde el token;
+        await User.findByIdAndUpdate(id, { verified: true });
+        return response.sendStatus(200);
+
     } catch (error) {
 
         //Encontrar el email del usuario
@@ -83,8 +95,8 @@ usersRouter.patch('/:id/:token', async (request, response) => {
         port: 465, // Cambia el puerto si es necesario
         secure: true, // true for 465, false for other ports
         auth: {
-            user: process.env.EMAIL_USER, // Reemplaza con tu usuario de email
-            pass: process.env.EMAIL_PASS, // Reemplaza con tu contraseña de email
+        user: process.env.EMAIL_USER, // Reemplaza con tu usuario de email
+        pass: process.env.EMAIL_PASS, // Reemplaza con tu contraseña de email
     },
     });
 

@@ -10,7 +10,8 @@ const usersRouter = require('./controllers/users');
 const loginRouter = require('./controllers/login');
 const logoutRouter = require('./controllers/logout'); // Controlador para manejar el cierre de sesión
 const productsRouter = require('./controllers/products');
-const { userExtractor, adminOnly } = require('./middleware/auth'); // Middleware para extraer el usuario autenticado
+const { userExtractor } = require('./middleware/auth'); // Middleware para extraer el usuario autenticado
+const meRouter = require('./controllers/me');
 const { MONGO_URI } = require('./config'); // Importar la URI de conexión a MongoDB desde el archivo de configuración
 
 (async() =>{
@@ -37,7 +38,9 @@ app.use('/components', express.static(path.resolve('views', 'components')));
 app.use('/img', express.static(path.resolve('img')));
 app.use('/verify/:id/:token', express.static(path.resolve('views', 'verify')));
 app.use('/admin', express.static(path.resolve('views', 'admin')));
-
+app.use('/admin/products', express.static(path.resolve('views', 'admin', 'products')));
+app.use('/admin/users', express.static(path.resolve('views', 'admin', 'users')));
+app.use('/admin/orders', express.static(path.resolve('views', 'admin', 'orders')));
 
 //MORGAN
 // Morgan es un middleware que permite registrar las peticiones HTTP en la consola

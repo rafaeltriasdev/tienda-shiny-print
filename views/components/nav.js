@@ -198,6 +198,20 @@ const createNavTienda = () => {
       `;
 };
 
+const createNavAdmin = () => {
+    navbar.innerHTML = `
+    <div class="max-w-full h-16 max-auto flex items-center px-4 justify-between relative">
+        <img src="/img/shiny.png" alt="Logo" class="h-14 rounded-full">
+        <div class="flex items-center gap-4">
+            <a href="/admin/users" class="text-white hover:text-pink-950 transition">Usuarios</a>
+            <a href="/admin/products" class="text-white hover:text-pink-950 transition">Productos</a>
+            <a href="/admin/orders" class="text-white hover:text-pink-950 transition">Órdenes</a>
+            <button id="admin-logout" class="transition ease-in-out text-white font-bold bg-pink-800 hover:bg-pink-900 py-2 px-4 rounded-lg">Logout</button>
+        </div>
+    </div>
+    `;
+};
+
 // verificar en que pagina estoy y crear el navbar correspondiente
 if(window.location.pathname === '/') {
     createNavHome();
@@ -207,42 +221,67 @@ if(window.location.pathname === '/') {
     createNavLogin();
 } else if (window.location.pathname === '/tienda/') {
     createNavTienda();
+} else if (window.location.pathname === '/admin/') {
+    createNavAdmin();
 }
 
-const navBtn = navbar.children[0].children[1];
 
-navBtn.addEventListener('click', e => {
-  const menuMobile = navbar.children[0].children[3];
-  if (!navBtn.classList.contains('active')) {
-    navBtn.classList.add('active');
-    navBtn.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />'
-    menuMobile.classList.remove('hidden');
-    menuMobile.classList.add('flex');
-  } else {
-    navBtn.classList.remove('active');
-    navBtn.innerHTML = '<path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />'
-    menuMobile.classList.add('hidden');
-    menuMobile.classList.remove('flex');
-  }
-});
+// Lógica para menú mobile y logout sólo si no es admin
+if (
+    window.location.pathname === '/' ||
+    window.location.pathname === '/signup/' ||
+    window.location.pathname === '/login/' ||
+    window.location.pathname === '/tienda/'
+) {
+    const navBtn = navbar.children[0].children[1];
+    navBtn.addEventListener('click', e => {
+      const menuMobile = navbar.children[0].children[3];
+      if (!navBtn.classList.contains('active')) {
+        navBtn.classList.add('active');
+        navBtn.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />'
+        menuMobile.classList.remove('hidden');
+        menuMobile.classList.add('flex');
+      } else {
+        navBtn.classList.remove('active');
+        navBtn.innerHTML = '<path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />'
+        menuMobile.classList.add('hidden');
+        menuMobile.classList.remove('flex');
+      }
+    });
 
-// agregar el evento de click al boton de cerrar sesion
-const closeBtnDescktop = navbar.children[0].children[3].children[0];
-const closeBtnMobile = navbar.children[0].children[2].children[0];
-// verificar si el boton de cerrar sesion existe
-closeBtnDescktop.addEventListener('click', async e => {
-    try {
-        await axios.get('/api/logout');
-        window.location.pathname = '/login';
-    } catch (error) {
-        console.log(error);
+    // agregar el evento de click al boton de cerrar sesion
+    const closeBtnDescktop = navbar.children[0].children[3].children[0];
+    const closeBtnMobile = navbar.children[0].children[2].children[0];
+    // verificar si el boton de cerrar sesion existe
+    closeBtnDescktop.addEventListener('click', async e => {
+        try {
+            await axios.get('/api/logout');
+            window.location.pathname = '/login';
+        } catch (error) {
+            console.log(error);
+        }
+    })
+    closeBtnMobile.addEventListener('click', async e => {
+        try {
+            await axios.get('/api/logout');
+            window.location.pathname = '/login';
+        } catch (error) {
+            console.log(error);
+        }
+    })
+}
+
+// Evento logout para admin
+if (window.location.pathname === '/admin/' || window.location.pathname === '/admin') {
+    const logoutBtn = document.getElementById('admin-logout');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', async e => {
+            try {
+                await axios.get('/api/logout');
+                window.location.pathname = '/login';
+            } catch (error) {
+                console.log(error);
+            }
+        });
     }
-})
-closeBtnMobile.addEventListener('click', async e => {
-    try {
-        await axios.get('/api/logout');
-        window.location.pathname = '/login';
-    } catch (error) {
-        console.log(error);
-    }
-})
+}

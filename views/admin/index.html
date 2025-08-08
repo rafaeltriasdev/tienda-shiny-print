@@ -8,35 +8,16 @@
     <title>Panel de Administración | Shiny Print VE</title>
   </head>
 <body class="font-sans text-gray-800">
+  <nav id="navbar"></nav>
 
-  <nav id="navbar" class="fixed top-0 left-0 right-0 bg-pink-950 h-16 z-20"></nav>
-
-  <main class="pt-20 px-2 md:px-10 max-w-7xl mx-auto">
-    <h1 class="text-3xl md:text-5xl font-bold text-center mb-8">Panel de Administración</h1>
-    <section class="bg-white rounded-lg shadow-lg p-6 mb-10">
-      <h2 class="text-2xl font-semibold mb-4">Gestión de Productos</h2>
-      <form id="product-form" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-        <input type="text" id="name" placeholder="Nombre del producto" class="border rounded p-2" required>
-        <input type="text" id="description" placeholder="Descripción" class="border rounded p-2" required>
-        <input type="number" id="price" placeholder="Precio" class="border rounded p-2" required>
-        <input type="text" id="image" placeholder="URL de la imagen" class="border rounded p-2" required>
-        <button type="submit" class="col-span-1 md:col-span-2 bg-pink-800 hover:bg-pink-900 text-white py-2 px-4 rounded transition duration-300">Guardar Producto</button>
-      </form>
-      <div class="overflow-x-auto">
-        <table class="min-w-full bg-pink-50 rounded-lg">
-          <thead>
-            <tr>
-              <th class="py-2 px-4">Nombre</th>
-              <th class="py-2 px-4">Descripción</th>
-              <th class="py-2 px-4">Precio</th>
-              <th class="py-2 px-4">Imagen</th>
-              <th class="py-2 px-4">Acciones</th>
-            </tr>
-          </thead>
-          <tbody id="products-table">
-            <!-- Productos renderizados aquí -->
-          </tbody>
-        </table>
+  <main class="pt-20 px-2 md:px-10 max-w-3xl mx-auto">
+    <h1 class="text-3xl md:text-5xl font-bold text-center mb-8">¡Bienvenido, Administrador!</h1>
+    <section class="bg-white rounded-lg shadow-lg p-8 flex flex-col items-center">
+      <p class="text-xl mb-6 text-center">Desde aquí puedes gestionar toda la tienda. Selecciona una opción:</p>
+      <div class="flex flex-col gap-4 w-full max-w-md">
+        <a href="/admin/users" class="block bg-pink-800 hover:bg-pink-900 text-white py-3 px-6 rounded text-center text-lg font-semibold transition">Gestión de Usuarios</a>
+        <a href="/admin/products" class="block bg-pink-800 hover:bg-pink-900 text-white py-3 px-6 rounded text-center text-lg font-semibold transition">Gestión de Productos</a>
+        <a href="/admin/orders" class="block bg-pink-800 hover:bg-pink-900 text-white py-3 px-6 rounded text-center text-lg font-semibold transition">Gestión de Pedidos</a>
       </div>
     </section>
   </main>
