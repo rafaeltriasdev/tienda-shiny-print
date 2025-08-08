@@ -12,7 +12,7 @@ const logoutRouter = require('./controllers/logout'); // Controlador para maneja
 const adminRouter = require('./controllers/admin');
 const productsRouter = require('./controllers/products');
 const ordersRouter = require('./controllers/orders');
-const { userExtractor } = require('./middleware/auth'); // Middleware para extraer el usuario autenticado
+const { userExtractor, adminOnly } = require('./middleware/auth'); // Middleware para extraer el usuario autenticado
 const { MONGO_URI } = require('./config'); // Importar la URI de conexión a MongoDB desde el archivo de configuración
 
 (async() =>{
@@ -56,9 +56,9 @@ app.use(morgan('tiny'));
 app.use('/api/users', usersRouter);
 app.use('/api/login', loginRouter);
 app.use('/api/logout', logoutRouter);
-app.use('/api/products', productsRouter);
-app.use('/api/orders', ordersRouter);
-app.use('/api/admin', userExtractor, adminRouter);// Rutas protegidas por el middleware userExtractor
+app.use('/api/products', userExtractor, adminOnly, productsRouter);
+app.use('/api/orders', userExtractor, adminOnly, ordersRouter);
+app.use('/api/admin', userExtractor, adminOnly, adminRouter);// Rutas protegidas por el middleware userExtractor y adminOnly
 
 
 

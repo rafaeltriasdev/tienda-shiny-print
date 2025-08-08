@@ -13,7 +13,6 @@ const userSchema = new mongoose.Schema({
 
     todos: [{
         type: mongoose.Schema.Types.ObjectId, // Almacena el ID del usuario que creó el todo
-        ref: 'Todo' // Referencia al modelo Todo
     }],
     isAdmin: {
         type: Boolean,
