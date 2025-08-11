@@ -38,7 +38,12 @@ loginRouter.post('/', async (request, response) => {
         httpOnly: true
     });
 
-    return response.sendStatus(200);
+    // Devolver también el rol y el nombre del usuario
+    return response.status(200).json({
+        token: accessToken,
+        isAdmin: userExist.isAdmin || false,
+        name: userExist.name
+    });
 });
 
 module.exports = loginRouter; 

@@ -181,32 +181,6 @@ window.addEventListener('DOMContentLoaded', () => {
   }, 200);
 });
 
-
-// Mostrar/ocultar el carrito al hacer clic en el icono de la tienda
-shopIcon.addEventListener('click', () => {
-    cart.classList.toggle('h-96');
-    cart.classList.toggle('p-4');
-    cart.classList.toggle('transition-all');
-    cart.classList.toggle('ease-in-out');
-    cart.classList.toggle('duration-300');
-    // Buscar botones de cerrar y vaciar cada vez que se abre el carrito
-    closeCartBtn = document.getElementById('close-cart');
-    clearCartBtn = cart.querySelector('button:nth-child(2), .cart button:last-child');
-    if (closeCartBtn) {
-        closeCartBtn.onclick = () => {
-            cart.classList.remove('h-96', 'p-4', 'transition-all', 'ease-in-out', 'duration-300');
-        };
-    }
-    if (clearCartBtn) {
-        clearCartBtn.onclick = () => {
-            table.innerHTML = '';
-            updateCartUI();
-        };
-    }
-    updateCartUI();
-});
-
-
 // Eliminar todos los elementos de la tabla (soporte legacy)
 if (typeof tableClear !== 'undefined' && tableClear) {
     tableClear.addEventListener('click', () => {

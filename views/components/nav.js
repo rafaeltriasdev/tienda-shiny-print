@@ -90,11 +90,16 @@ function createNav({ links = [], active = '', showCart = false, showLogout = fal
 // --- Eliminado bloque antiguo e incompleto tras refactorización ---
 // verificar en que pagina estoy y crear el navbar correspondiente
 // Configuración de navs según la ruta
+
+// Obtener el rol del usuario desde localStorage
+const userRole = localStorage.getItem('userRole');
 const path = window.location.pathname;
+
 if (path === '/') {
   createNav({
     links: [
       { href: '/tienda', label: 'Tienda', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: '' },
+      ...(userRole === 'admin' ? [{ href: '/admin', label: 'Admin', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: '' }] : []),
       { href: '/login', label: 'Login', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: '' },
       { href: '/signup', label: 'Sign Up', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: '' }
     ],
@@ -106,6 +111,7 @@ if (path === '/') {
     links: [
       { href: '/', label: 'Home', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: '' },
       { href: '/tienda', label: 'Tienda', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: '' },
+      ...(userRole === 'admin' ? [{ href: '/admin', label: 'Admin', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: '' }] : []),
       { href: '/login', label: 'Login', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: '' }
     ],
     showCart: false,
@@ -116,6 +122,7 @@ if (path === '/') {
     links: [
       { href: '/', label: 'Home', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: '' },
       { href: '/tienda', label: 'Tienda', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: '' },
+      ...(userRole === 'admin' ? [{ href: '/admin', label: 'Admin', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: '' }] : []),
       { href: '/signup', label: 'Sign Up', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: '' }
     ],
     showCart: false,
@@ -126,7 +133,7 @@ if (path === '/') {
     links: [
       { href: '/', label: 'Home', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: '' },
       { href: '/tienda', label: 'Tienda', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: '' },
-      { href: '/admin', label: 'Admin', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: '' },
+      ...(userRole === 'admin' ? [{ href: '/admin', label: 'Admin', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: '' }] : []),
       { href: '/login', label: 'Login', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: '' },
       { href: '/signup', label: 'Sign Up', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: '' }
     ],

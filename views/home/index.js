@@ -57,10 +57,10 @@ let clearCartBtn = null;
 const productsList = document.getElementById('products-list');
 
 // Renderizar productos dinámicamente desde el backend
-async function fetchAndRenderProducts() {
-  // No hay productos dinámicos en home, así que solo inicializamos listeners si existen
-  addProductBtnListeners();
-}
+// async function fetchAndRenderProducts() {
+// No hay productos dinámicos en home, así que solo inicializamos listeners si existen
+// addProductBtnListeners();
+// }
 
 // Esperar a que el DOM esté listo para inicializar icono y eventos
 window.addEventListener('DOMContentLoaded', () => {
