@@ -191,6 +191,8 @@ if (
     closeBtnDescktop.addEventListener('click', async e => {
         try {
             await axios.get('/api/logout');
+            localStorage.removeItem('userRole');
+            localStorage.removeItem('userName');
             window.location.pathname = '/login';
         } catch (error) {
             console.log(error);
@@ -199,6 +201,8 @@ if (
     closeBtnMobile.addEventListener('click', async e => {
         try {
             await axios.get('/api/logout');
+            localStorage.removeItem('userRole');
+            localStorage.removeItem('userName');
             window.location.pathname = '/login';
         } catch (error) {
             console.log(error);
@@ -213,6 +217,8 @@ if (window.location.pathname === '/admin/' || window.location.pathname === '/adm
         logoutBtn.addEventListener('click', async e => {
             try {
                 await axios.get('/api/logout');
+                localStorage.removeItem('userRole');
+                localStorage.removeItem('userName');
                 window.location.pathname = '/login';
             } catch (error) {
                 console.log(error);
