@@ -98,6 +98,7 @@ const path = window.location.pathname;
 // Definir el botón de logout si el usuario está autenticado
 const logoutBtn = { type: 'button', id: 'logout-btn', label: 'Logout', class: 'transition ease-in-out text-white font-bold bg-pink-800 hover:bg-pink-900 py-2 px-4 rounded-lg' };
 
+
 if (path === '/') {
   createNav({
     links: [
@@ -111,6 +112,7 @@ if (path === '/') {
     showCart: true,
     showMobile: true
   });
+  setupLogoutEvent();
 } else if (path === '/signup/') {
   createNav({
     links: [
@@ -124,6 +126,7 @@ if (path === '/') {
     showCart: false,
     showMobile: true
   });
+  setupLogoutEvent();
 } else if (path === '/login/') {
   createNav({
     links: [
@@ -137,6 +140,7 @@ if (path === '/') {
     showCart: false,
     showMobile: true
   });
+  setupLogoutEvent();
 } else if (path === '/tienda/') {
   createNav({
     links: [
@@ -151,6 +155,7 @@ if (path === '/') {
     showCart: true,
     showMobile: true
   });
+  setupLogoutEvent();
 } else if (path.startsWith('/admin')) {
   let active = '';
   if (path.startsWith('/admin/users')) active = 'users';
@@ -169,10 +174,11 @@ if (path === '/') {
     showCart: false,
     showMobile: true
   });
+  setupLogoutEvent();
 }
 
 
-// Lógica para menú mobile y logout (todas las vistas)
+// Lógica para menú mobile (todas las vistas)
 if (
     window.location.pathname === '/' ||
     window.location.pathname === '/signup/' ||
@@ -194,21 +200,21 @@ if (
         menuMobile.classList.remove('flex');
       }
     });
+}
 
-    // Evento logout para el botón logout-btn (todas las vistas, incluido admin)
-    setTimeout(() => {
-      const logoutBtn = document.getElementById('logout-btn');
-      if (logoutBtn) {
-          logoutBtn.addEventListener('click', async e => {
-              try {
-                  await axios.get('/api/logout');
-                  localStorage.removeItem('userRole');
-                  localStorage.removeItem('userName');
-                  window.location.pathname = '/login';
-              } catch (error) {
-                  console.log(error);
-              }
-          });
+// Función para agregar el evento de logout al botón
+function setupLogoutEvent() {
+  const logoutBtn = document.getElementById('logout-btn');
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', async e => {
+      try {
+        await axios.get('/api/logout');
+        localStorage.removeItem('userRole');
+        localStorage.removeItem('userName');
+        window.location.pathname = '/login';
+      } catch (error) {
+        console.log(error);
       }
-    }, 0);
+    });
+  }
 }
