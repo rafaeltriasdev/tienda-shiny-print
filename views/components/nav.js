@@ -195,33 +195,20 @@ if (
       }
     });
 
-    // Evento logout para el botón logout-btn (todas las vistas)
-    const logoutBtn = document.getElementById('logout-btn');
-    if (logoutBtn) {
-        logoutBtn.addEventListener('click', async e => {
-            try {
-                await axios.get('/api/logout');
-                localStorage.removeItem('userRole');
-                localStorage.removeItem('userName');
-                window.location.pathname = '/login';
-            } catch (error) {
-                console.log(error);
-            }
-        });
-    }
-}
-
-// Evento logout para cualquier vista (incluido admin)
-const logoutBtnElement = document.getElementById('logout-btn');
-if (logoutBtnElement) {
-    logoutBtnElement.addEventListener('click', async e => {
-        try {
-            await axios.get('/api/logout');
-            localStorage.removeItem('userRole');
-            localStorage.removeItem('userName');
-            window.location.pathname = '/login';
-        } catch (error) {
-            console.log(error);
-        }
-    });
+    // Evento logout para el botón logout-btn (todas las vistas, incluido admin)
+    setTimeout(() => {
+      const logoutBtn = document.getElementById('logout-btn');
+      if (logoutBtn) {
+          logoutBtn.addEventListener('click', async e => {
+              try {
+                  await axios.get('/api/logout');
+                  localStorage.removeItem('userRole');
+                  localStorage.removeItem('userName');
+                  window.location.pathname = '/login';
+              } catch (error) {
+                  console.log(error);
+              }
+          });
+      }
+    }, 0);
 }
