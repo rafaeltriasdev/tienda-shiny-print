@@ -95,13 +95,18 @@ function createNav({ links = [], active = '', showCart = false, showLogout = fal
 const userRole = localStorage.getItem('userRole');
 const path = window.location.pathname;
 
+// Definir el botón de logout si el usuario está autenticado
+const logoutBtn = { type: 'button', id: 'logout-btn', label: 'Logout', class: 'transition ease-in-out text-white font-bold bg-pink-800 hover:bg-pink-900 py-2 px-4 rounded-lg' };
+
 if (path === '/') {
   createNav({
     links: [
       { href: '/tienda', label: 'Tienda', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: '' },
       ...(userRole === 'admin' ? [{ href: '/admin', label: 'Admin', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: '' }] : []),
-      { href: '/login', label: 'Login', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: '' },
-      { href: '/signup', label: 'Sign Up', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: '' }
+      ...(userRole ? [logoutBtn] : [
+        { href: '/login', label: 'Login', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: '' },
+        { href: '/signup', label: 'Sign Up', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: '' }
+      ])
     ],
     showCart: true,
     showMobile: true
@@ -112,7 +117,9 @@ if (path === '/') {
       { href: '/', label: 'Home', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: '' },
       { href: '/tienda', label: 'Tienda', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: '' },
       ...(userRole === 'admin' ? [{ href: '/admin', label: 'Admin', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: '' }] : []),
-      { href: '/login', label: 'Login', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: '' }
+      ...(userRole ? [logoutBtn] : [
+        { href: '/login', label: 'Login', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: '' }
+      ])
     ],
     showCart: false,
     showMobile: true
@@ -123,7 +130,9 @@ if (path === '/') {
       { href: '/', label: 'Home', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: '' },
       { href: '/tienda', label: 'Tienda', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: '' },
       ...(userRole === 'admin' ? [{ href: '/admin', label: 'Admin', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: '' }] : []),
-      { href: '/signup', label: 'Sign Up', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: '' }
+      ...(userRole ? [logoutBtn] : [
+        { href: '/signup', label: 'Sign Up', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: '' }
+      ])
     ],
     showCart: false,
     showMobile: true
@@ -134,8 +143,10 @@ if (path === '/') {
       { href: '/', label: 'Home', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: '' },
       { href: '/tienda', label: 'Tienda', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: '' },
       ...(userRole === 'admin' ? [{ href: '/admin', label: 'Admin', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: '' }] : []),
-      { href: '/login', label: 'Login', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: '' },
-      { href: '/signup', label: 'Sign Up', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: '' }
+      ...(userRole ? [logoutBtn] : [
+        { href: '/login', label: 'Login', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: '' },
+        { href: '/signup', label: 'Sign Up', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: '' }
+      ])
     ],
     showCart: true,
     showMobile: true
@@ -161,7 +172,7 @@ if (path === '/') {
 }
 
 
-// Lógica para menú mobile y logout sólo si no es admin
+// Lógica para menú mobile y logout (todas las vistas)
 if (
     window.location.pathname === '/' ||
     window.location.pathname === '/signup/' ||
@@ -184,30 +195,20 @@ if (
       }
     });
 
-    // agregar el evento de click al boton de cerrar sesion
-    const closeBtnDescktop = navbar.children[0].children[3].children[0];
-    const closeBtnMobile = navbar.children[0].children[2].children[0];
-    // verificar si el boton de cerrar sesion existe
-    closeBtnDescktop.addEventListener('click', async e => {
-        try {
-            await axios.get('/api/logout');
-            localStorage.removeItem('userRole');
-            localStorage.removeItem('userName');
-            window.location.pathname = '/login';
-        } catch (error) {
-            console.log(error);
-        }
-    })
-    closeBtnMobile.addEventListener('click', async e => {
-        try {
-            await axios.get('/api/logout');
-            localStorage.removeItem('userRole');
-            localStorage.removeItem('userName');
-            window.location.pathname = '/login';
-        } catch (error) {
-            console.log(error);
-        }
-    })
+    // Evento logout para el botón logout-btn (todas las vistas)
+    const logoutBtn = document.getElementById('logout-btn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', async e => {
+            try {
+                await axios.get('/api/logout');
+                localStorage.removeItem('userRole');
+                localStorage.removeItem('userName');
+                window.location.pathname = '/login';
+            } catch (error) {
+                console.log(error);
+            }
+        });
+    }
 }
 
 // Evento logout para admin
