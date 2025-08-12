@@ -65,7 +65,7 @@ Accede a la aplicación desde tu navegador en `http://localhost:3000` (o el puer
 ![Vista Login](img/login.png)
 
 ### Vista Producto
-![Vista Producto](img/products.png)
+![Vista Producto](img/users.png)
 
 ### Vista Admin
 ![Vista Admin](img/admin.png)
