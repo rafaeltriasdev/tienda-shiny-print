@@ -163,7 +163,7 @@ if (path === '/') {
       { href: '/admin/products', label: 'Productos', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: 'products' },
       { href: '/admin/orders', label: 'Órdenes', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: 'orders' },
       { href: '/tienda', label: 'Tienda', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: '' },
-      { type: 'button', id: 'admin-logout', label: 'Logout', class: 'transition ease-in-out text-white font-bold bg-pink-800 hover:bg-pink-900 py-2 px-4 rounded-lg' }
+      { type: 'button', id: 'logout-btn', label: 'Logout', class: 'transition ease-in-out text-white font-bold bg-pink-800 hover:bg-pink-900 py-2 px-4 rounded-lg' }
     ],
     active: path === '/admin/' || path === '/admin' ? 'dashboard' : active,
     showCart: false,
@@ -211,19 +211,17 @@ if (
     }
 }
 
-// Evento logout para admin
-if (window.location.pathname === '/admin/' || window.location.pathname === '/admin') {
-    const logoutBtn = document.getElementById('admin-logout');
-    if (logoutBtn) {
-        logoutBtn.addEventListener('click', async e => {
-            try {
-                await axios.get('/api/logout');
-                localStorage.removeItem('userRole');
-                localStorage.removeItem('userName');
-                window.location.pathname = '/login';
-            } catch (error) {
-                console.log(error);
-            }
-        });
-    }
+// Evento logout para cualquier vista (incluido admin)
+const logoutBtnElement = document.getElementById('logout-btn');
+if (logoutBtnElement) {
+    logoutBtnElement.addEventListener('click', async e => {
+        try {
+            await axios.get('/api/logout');
+            localStorage.removeItem('userRole');
+            localStorage.removeItem('userName');
+            window.location.pathname = '/login';
+        } catch (error) {
+            console.log(error);
+        }
+    });
 }
