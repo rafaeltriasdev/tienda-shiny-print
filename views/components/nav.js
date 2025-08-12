@@ -117,9 +117,9 @@ if (path === '/') {
       { href: '/', label: 'Home', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: '' },
       { href: '/tienda', label: 'Tienda', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: '' },
       ...(userRole === 'admin' ? [{ href: '/admin', label: 'Admin', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: '' }] : []),
-      ...(userRole ? [logoutBtn] : [
+      ...(!userRole ? [
         { href: '/login', label: 'Login', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: '' }
-      ])
+      ] : [])
     ],
     showCart: false,
     showMobile: true
@@ -130,9 +130,9 @@ if (path === '/') {
       { href: '/', label: 'Home', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: '' },
       { href: '/tienda', label: 'Tienda', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: '' },
       ...(userRole === 'admin' ? [{ href: '/admin', label: 'Admin', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: '' }] : []),
-      ...(userRole ? [logoutBtn] : [
+      ...(!userRole ? [
         { href: '/signup', label: 'Sign Up', class: 'transition ease-in-out text-white font-bold hover:bg-pink-900 py-2 px-4 rounded-lg', activeKey: '' }
-      ])
+      ] : [])
     ],
     showCart: false,
     showMobile: true
